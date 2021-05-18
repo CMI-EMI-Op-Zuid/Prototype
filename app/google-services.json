@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "984693780513",
+    "project_id": "cmi---emi-op-zuid---prototype",
+    "storage_bucket": "cmi---emi-op-zuid---prototype.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984693780513:android:f2fcbd99c42d6dc51d7360",
+        "android_client_info": {
+          "package_name": "com.example.medialabmonitoringstoolprototype"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "984693780513-s2ge11oavh42741pie0fctcibnuo99rr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwaIGCTVOBCeX393ikRuZ0wG0NbZRfn1A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "984693780513-s2ge11oavh42741pie0fctcibnuo99rr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
