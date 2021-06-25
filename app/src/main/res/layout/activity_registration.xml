@@ -29,11 +29,12 @@
         android:backgroundTint="#43CF5F"
         android:fontFamily="@font/quicksand_bold"
         android:text="@string/register"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordRegistration"
         app:strokeColor="#FFFFFF"
-        app:strokeWidth="6px"/>
+        app:strokeWidth="6px" />
 
     <EditText
         android:id="@+id/emailRegistration"
