@@ -69,8 +69,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.899005,4.479679), 17.0f));
-                addCircle(new LatLng(51.899622494379216, 4.480920109222571), GEOFENCE_RADIUS);
-                addGeofence(new LatLng(51.899622494379216, 4.480920109222571), GEOFENCE_RADIUS);
+                addCircle(new LatLng(51.899512778417346, 4.481113240393542), GEOFENCE_RADIUS);
+                addGeofence(new LatLng(51.899512778417346, 4.481113240393542), GEOFENCE_RADIUS);
             }
         });
 
