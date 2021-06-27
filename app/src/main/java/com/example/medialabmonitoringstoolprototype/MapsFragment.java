@@ -4,11 +4,13 @@ import android.Manifest;
 import android.app.PendingIntent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +32,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.util.Objects;
+
 public class MapsFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
     private static final String TAG = "MapsFragment";
@@ -39,7 +43,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
     private GeofenceHelper geofenceHelper;
 
     private int FINE_LOCATION_ACCESS_REQUEST_CODE = 10001;
-    private float GEOFENCE_RADIUS = 10;
+    private int BACKGROUND_LOCATION_ACCESS_REQUEST_CODE = 10002;
+    private float GEOFENCE_RADIUS = 100;
     private String GEOFENCE_ID = "SOME_GEOFENCE_ID";
 
     @Override
@@ -60,9 +65,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
 
         supportMapFragment.getMapAsync(this);
 
-        geofencingClient = LocationServices.getGeofencingClient(requireActivity());
-        geofenceHelper = new GeofenceHelper(requireActivity());
-
         // Async map
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
 
@@ -73,7 +75,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
                 addGeofence(new LatLng(51.899512778417346, 4.481113240393542), GEOFENCE_RADIUS);
             }
         });
-
+        geofencingClient = LocationServices.getGeofencingClient(requireActivity());
+        geofenceHelper = new GeofenceHelper(requireActivity());
         // Return view
         return view;
 
@@ -99,25 +102,54 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == FINE_LOCATION_ACCESS_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // We have the permission, this function creates button in upper right corner to go to current location on maps
+                //We have the permission
                 mMap.setMyLocationEnabled(true);
             } else {
-                // We do not have the permission
+                //We do not have the permission..
+
+            }
+        }
+
+        if (requestCode == BACKGROUND_LOCATION_ACCESS_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //We have the permission
+                Toast.makeText(getContext(), "You can add geofences...", Toast.LENGTH_SHORT).show();
+            } else {
+                //We do not have the permission..
+                Toast.makeText(getContext(), "Background location access is neccessary for geofences to trigger...", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    public void onMapLongClick(LatLng LatLng) {
+    public void onMapLongClick(LatLng latLng) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            //We need background permission
+            if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                handleMapLongClick(latLng);
+            } else {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+                    //We show a dialog and ask for permission
+                    ActivityCompat.requestPermissions(requireActivity(), new String[] {Manifest.permission.ACCESS_BACKGROUND_LOCATION}, BACKGROUND_LOCATION_ACCESS_REQUEST_CODE);
+                } else {
+                    ActivityCompat.requestPermissions(requireActivity(), new String[] {Manifest.permission.ACCESS_BACKGROUND_LOCATION}, BACKGROUND_LOCATION_ACCESS_REQUEST_CODE);
+                }
+            }
+
+        } else {
+            handleMapLongClick(latLng);
+        }
+
+    }
+
+    private void handleMapLongClick(LatLng latLng) {
         mMap.clear();
-        addMarker(LatLng);
-        addCircle(LatLng, GEOFENCE_RADIUS);
-        addGeofence(LatLng, GEOFENCE_RADIUS);
+        addMarker(latLng);
+        addCircle(latLng, GEOFENCE_RADIUS);
+        addGeofence(latLng, GEOFENCE_RADIUS);
     }
 
     private void addGeofence(LatLng LatLng, float radius) {
-        Geofence geofence = geofenceHelper.getGeofence(GEOFENCE_ID, LatLng, radius,
-                Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT | Geofence.GEOFENCE_TRANSITION_DWELL);
-
+        Geofence geofence = geofenceHelper.getGeofence(GEOFENCE_ID, LatLng, radius, Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_DWELL | Geofence.GEOFENCE_TRANSITION_EXIT);
         GeofencingRequest geofencingRequest = geofenceHelper.getGeofencingRequest(geofence);
         PendingIntent pendingIntent = geofenceHelper.getPendingIntent();
 
@@ -125,14 +157,14 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "onSuccess: Geofence added...");
+                        Log.d(TAG, "onSuccess: Geofence Added...");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         String errorMessage = geofenceHelper.getErrorString(e);
-                        Log.d(TAG, "onFailure:" + errorMessage);
+                        Log.d(TAG, "onFailure: " + errorMessage);
                     }
                 });
     }
