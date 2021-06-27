@@ -38,6 +38,9 @@ public class DashboardActivity extends AppCompatActivity{
                     Fragment selectedFragment = null;
 
                     switch (item.getItemId()) {
+                        case R.id.storyOverview:
+                            selectedFragment = new StoryOverview();
+                            break;
                         case R.id.dashboardFragment:
                             selectedFragment = new DashboardFragment();
                             break;
