@@ -14,4 +14,9 @@
         android:name="com.example.medialabmonitoringstoolprototype.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/storyOverview"
+        android:name="com.example.medialabmonitoringstoolprototype.StoryOverview"
+        android:label="fragment_story_overview"
+        tools:layout="@layout/fragment_story_overview" />
 </navigation>

@@ -3,6 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/storiesFragment"
+        android:icon="@drawable/list_text"
+        android:title="Stories" />
+    <item
         android:id="@+id/dashboardFragment"
         android:title="Dashboard"
         android:icon="@drawable/ic_baseline_home_24"/>

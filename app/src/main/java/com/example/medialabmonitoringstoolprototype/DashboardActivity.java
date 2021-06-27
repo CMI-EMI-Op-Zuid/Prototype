@@ -22,6 +22,8 @@ public class DashboardActivity extends AppCompatActivity{
 
         BottomNavigationView bottomNavigationView= findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+        bottomNavigationView.setItemBackgroundResource(R.drawable.menubackground);
+
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new DashboardFragment())
