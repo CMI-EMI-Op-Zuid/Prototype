@@ -26,10 +26,11 @@
         android:text="Ik ben schatzoeker Floris. Ik hoorde dat jij mij kan helpen om deze schat te ontdekken. Ik ben nu al een aantal weken bezig maar ik blijf maar vastlopen."
         android:textColor="#000000"
         android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.312" />
 
     <TextView
         android:id="@+id/storyEndBtn"
@@ -37,14 +38,16 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:fontFamily="@font/quicksand_bold"
-        android:text="> Ik ga helpen! <"
+        android:onClick="StartChallenge"
+        android:text="Ik ga helpen! "
         android:textColor="#03A9F4"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
+        app:layout_constraintHorizontal_bias="0.837"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintVertical_bias="0.429"
+        tools:ignore="OnClick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,6 +29,7 @@
         android:layout_width="296dp"
         android:layout_height="81dp"
         android:background="@null"
+        android:onClick="EnterStoryOverview"
         android:scaleType="fitXY"
         android:src="@drawable/button_menu"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,12 +64,14 @@
         android:background="@null"
         android:scaleType="fitXY"
         android:src="@drawable/prestaties"
+        android:onClick="EnterStoryOverview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.596" />
+        app:layout_constraintVertical_bias="0.596"
+        tools:ignore="OnClick" />
 
     <TextView
         android:layout_width="wrap_content"

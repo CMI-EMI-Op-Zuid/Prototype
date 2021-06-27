@@ -3,6 +3,7 @@ package com.example.medialabmonitoringstoolprototype;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +31,26 @@ public class DashboardActivity extends AppCompatActivity{
                 .commit();
     }
 
+    public void EnterStoryOverview(View view){
+        Navigation.findNavController(view).navigate(R.id.storyOverview);
+    }
+
+    public void StartStory(View view){
+        Navigation.findNavController(view).navigate(R.id.storyIntro);
+    }
+
+    public void StartChallenge(View view){
+        Navigation.findNavController(view).navigate(R.id.storyChallenge);
+    }
+
+    public void StartEnding(View view){
+        Navigation.findNavController(view).navigate(R.id.storyEnding);
+    }
+
+    public void EndStory(View view){
+        Navigation.findNavController(view).navigate(R.id.dashboardFragment);
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -54,4 +75,5 @@ public class DashboardActivity extends AppCompatActivity{
                     return true;
                 }
             };
+
 }
