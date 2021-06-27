@@ -20,6 +20,7 @@ import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingClient;
 import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -38,7 +39,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
     private GeofenceHelper geofenceHelper;
 
     private int FINE_LOCATION_ACCESS_REQUEST_CODE = 10001;
-    private float GEOFENCE_RADIUS = 5;
+    private float GEOFENCE_RADIUS = 10;
     private String GEOFENCE_ID = "SOME_GEOFENCE_ID";
 
     @Override
@@ -67,7 +68,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
 
             @Override
             public void onMapReady(GoogleMap googleMap) {
-
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.899005,4.479679), 17.0f));
+                addCircle(new LatLng(51.899622494379216, 4.480920109222571), GEOFENCE_RADIUS);
+                addGeofence(new LatLng(51.899622494379216, 4.480920109222571), GEOFENCE_RADIUS);
             }
         });
 
