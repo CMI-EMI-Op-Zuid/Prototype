@@ -1,5 +1,6 @@
 package com.example.medialabmonitoringstoolprototype;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -28,7 +29,7 @@ public class GeofenceHelper extends ContextWrapper {
                 .build();
     }
 
-    public Geofence getGeofence(String ID, LatLng LatLng, float radius, int transitionTypes) {
+    public Geofence getGeofence(String ID, LatLng LatLng, float radius, Activity activity, int transitionTypes) {
 
         return new Geofence.Builder()
                 .setCircularRegion(LatLng.latitude, LatLng.longitude, radius)

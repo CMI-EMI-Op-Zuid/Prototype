@@ -39,7 +39,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
     private GeofenceHelper geofenceHelper;
 
     private int FINE_LOCATION_ACCESS_REQUEST_CODE = 10001;
-    private float GEOFENCE_RADIUS = 10;
+    private float GEOFENCE_RADIUS = 100;
     private String GEOFENCE_ID = "SOME_GEOFENCE_ID";
 
     @Override
@@ -115,7 +115,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
     }
 
     private void addGeofence(LatLng LatLng, float radius) {
-        Geofence geofence = geofenceHelper.getGeofence(GEOFENCE_ID, LatLng, radius,
+
+        Geofence geofence = geofenceHelper.getGeofence(GEOFENCE_ID, LatLng, radius, getActivity(),
                 Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT | Geofence.GEOFENCE_TRANSITION_DWELL);
 
         GeofencingRequest geofencingRequest = geofenceHelper.getGeofencingRequest(geofence);
