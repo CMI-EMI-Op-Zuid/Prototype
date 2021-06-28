@@ -68,6 +68,9 @@ public class DashboardActivity extends AppCompatActivity{
                         case R.id.profileFragment:
                             selectedFragment = new ProfileFragment();
                             break;
+                        case R.id.mapsFragment:
+                            selectedFragment = new MapsFragment();
+                            break;
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();

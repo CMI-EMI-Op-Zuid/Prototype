@@ -24,14 +24,19 @@
         android:name="com.example.medialabmonitoringstoolprototype.StoryIntro"
         android:label="fragment_story_intro"
         tools:layout="@layout/fragment_story_intro" />
-    <fragment
+    <!-- <fragment
         android:id="@+id/storyChallenge"
         android:name="com.example.medialabmonitoringstoolprototype.StoryChallenge"
         android:label="fragment_story_challenge"
-        tools:layout="@layout/fragment_story_challenge" />
+        tools:layout="@layout/fragment_story_challenge" /> -->
     <fragment
         android:id="@+id/storyEnding"
         android:name="com.example.medialabmonitoringstoolprototype.StoryEnding"
         android:label="fragment_story_ending"
         tools:layout="@layout/fragment_story_ending" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.medialabmonitoringstoolprototype.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>
