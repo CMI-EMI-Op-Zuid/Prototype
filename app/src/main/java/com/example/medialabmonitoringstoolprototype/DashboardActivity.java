@@ -39,9 +39,9 @@ public class DashboardActivity extends AppCompatActivity{
         Navigation.findNavController(view).navigate(R.id.storyIntro);
     }
 
-    public void StartChallenge(View view){
-        Navigation.findNavController(view).navigate(R.id.storyChallenge);
-    }
+//    public void StartChallenge(View view){
+//        Navigation.findNavController(view).navigate(R.id.storyChallenge);
+//    }
 
     public void StartEnding(View view){
         Navigation.findNavController(view).navigate(R.id.storyEnding);
